@@ -1,0 +1,32 @@
+K8s Comments:
+
+Installation:
+	sudo yum update -y
+    curl -sfL https://get.k3s.io | sh -
+	
+Access without sudo:
+	mkdir -p ~/.kube
+    sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+	sudo chown $USER:$USER ~/.kube/config
+	kubectl get nodes
+	export KUBECONFIG=~/.kube/config
+
+Basic pod commands:
+	kind: Pod
+	kubectl create -f pod.yaml		#First time you're deploying something
+	kubectl apply -f pod.yaml		#When updating or reapplying YAML
+	kubectl get pods				
+	kubectl describe pod my-nginx
+	kubectl delete pod my-nginx
+	
+Basic replicaset commands:
+	kind: ReplicaSet
+	kubectl create -f replicasets.yaml
+	kubectl apply -f replicasets.yaml
+	kubectl get replicatsets
+	kubectl delete replicaset my-nginx-pod
+
+Basic deployment commands:
+	kind: Deployment
+	kubectl create -f deployment.yaml	
+	kubectl delete deploy challenge
