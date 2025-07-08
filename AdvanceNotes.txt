@@ -1,0 +1,5 @@
+1. Have the containers stored in a new file system and not in the root  
+    This is done inorder to maintain the root storage
+1.1 Steps
+    check the default location where the docker images are store
+    
