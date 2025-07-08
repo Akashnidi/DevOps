@@ -27,4 +27,56 @@
     
     1.6 Now try creating a container and check the /mnt/storage
 
+2. What are "Dangeling Images"
+    When an new docker image is create with the same tag the old image will become a Dangeling Images.
+    It will consume unnecessary space in the file system.
+    It will have the value <none>
+
+    2.1 prune
+    docker system prune
+    docker container prune
+    dockert image prune
+
+    O/P
+        WARNING! This will remove:
+        - all stopped containers
+        - all networks not used by at least one container
+        - all dangling images
+        - all dangling build cache
+
+        Are you sure you want to continue? [y/N]
+    If a container is running with the dangling image then the prune command will not delete that image.
+    We have to remove the dangling image forcefuly
+
+    2.2 Delete only specific Image
+        docker image rm <image-name:tag
+        docker rmi <image-name:tag>
+        docker image rm 26b77e58432b 
+        -f for force
+
+3. How to login/logout to docker
+    docker login
+    docker logout
+    credentials will be stored in /root/.docker/config.json
+
+4. How to keep the created image to a centerlized location
+    Push:
+        docker image tag <image-name:tag> <account-name>/<image-name:tag>
+        docker image push <account-name>/<image-name:tag>
+    Pull:
+        docker pull <account-name>/<image-name:tag>
+
+5. How to create a image from running container
+    docker container commit <container ID> <image-name:tag>
+
+6. How to share image files
+
+    6.1 compress the image
+        docker image save <image-name:tag> > <filename.tar>
+
+    6.2 how to load/extract the image from compressed images
+        docker image load < <filename.tar> 
+
+
+
 
