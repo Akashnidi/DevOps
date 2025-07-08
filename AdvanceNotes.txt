@@ -1,5 +1,30 @@
-1. Have the containers stored in a new file system and not in the root  
-    This is done inorder to maintain the root storage
-1.1 Steps
-    check the default location where the docker images are store
+1. How to create the docker containers in a new file system and not in the root  
+    This is done inorder to maintain the root storage space
+
+    1.1 Steps
+        check the default location where the docker containers are store as default in the server
+        Path:
+            /var/lib/docker/containers/
+            /var/lib/docker/image/overlay2/imagedb/content/sha256
     
+    1.2 How to change the directory
+        Create a configuration under /etc/docker
+            daemon.json
+    
+    1.3 Create a configuration
+        {
+            "date-root": "/mnt/storage"
+        }
+    
+    1.4 Create a directory for storing the docker Images
+        /mnt/storage
+    
+    We have created a new directory and configured the new path to store the docker images.
+    
+    1.5 To see the new configuration reflected restart the service and the daemon configuration
+        systemctl daemon-reload
+        systemctl restart docker
+    
+    1.6 Now try creating a container and check the /mnt/storage
+
+
