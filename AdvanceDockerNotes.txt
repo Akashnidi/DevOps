@@ -35,7 +35,7 @@
     2.1 prune
     docker system prune
     docker container prune
-    dockert image prune
+    docker image prune
 
     O/P
         WARNING! This will remove:
@@ -77,6 +77,42 @@
     6.2 how to load/extract the image from compressed images
         docker image load < <filename.tar> 
 
+7. How to access the container application?
 
+    Possible reason that if you are not able to access the container is the port is not open
+
+    docker container run -d --name <container-name> -p 8080:80 <image-name:tag>
+        -p <port-to-access-outside:localhost-port>
+
+8. Docker volumes - Volume mapping
+    Normally, when a Docker container is removed, all the container's data is lost. 
+    Volume mapping allows you to store this data outside the container
+
+        - There are two types of volume mapping
+            - Bind mount
+            - Named Volume
+
+        - This mapping is done initailly during the container creation
+
+            docker container run -d --name <container-name> -v <host-path:container-path> <image-name:tag>
+
+        - Bind mount
+            Maps a specific path on the host to a path in the container.
+            
+                docker run -v /home/user/data:/app/data myimage
+
+        - Name volume
+            Docker create and manages a volume in the default location
+
+                docker run -v myvolume:/app/data myimage
+                    myvolume: "/var/lib/docker/volumes/myvolume/_data"
+
+        - Changes on the host path are instantly visible in the container and vice versa.
+
+9. docker system df
+    docker stats
+    docker container inspect <container name>
+    docker image inspect <image-name:tag>
+    docker logs <container-name>
 
 
