@@ -116,3 +116,22 @@
     docker logs <container-name>
 
 
+10. docker network
+    list all the docker network available 
+        docker network ls
+    To know the docker ip's    
+        ip a s
+
+11. How to create the a default docker network
+    
+    By default we'll have a docker bridge driver which is responsible for assigning Ip's to the docker containers
+    - It is always recommended to create a custom network for security reasons
+
+    Network creation
+        docker network create <network-name>
+    
+    Check the container details
+        docker inspect <container name>
+
+    Create container with custom network
+        docker run -d --network <network-name> --name <container-name> <image-name:tag>
